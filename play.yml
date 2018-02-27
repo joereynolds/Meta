@@ -1,0 +1,4 @@
+- hosts: joereynoldsaudio
+
+  roles:
+      - common
