@@ -1,5 +1,5 @@
-- name: Add ppa:ondrej/php
-  raw: "sudo add-apt-repository ppa:ondrej/php"
+# - name: Add ppa:ondrej/php
+  # raw: "sudo add-apt-repository ppa:ondrej/php"
 
 - name: Install apt repositories
   apt:
@@ -8,7 +8,6 @@
   become: true
   with_items:
       - fail2ban
-      - composer
       - git
       - php7.1
       - php7.1-curl
