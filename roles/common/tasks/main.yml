@@ -1,3 +1,15 @@
+- name: Add our user
+  user:
+    name: joe
+    group: sudo
+    append: yes
+  become: true
+
+- name: Create required directories
+  file:
+      path: /var/www    
+      state: directory
+
 # - name: Add ppa:ondrej/php
   # raw: "sudo add-apt-repository ppa:ondrej/php"
 
@@ -13,3 +25,4 @@
       - php7.1-curl
       - php7.1-mbstring
       - php7.1-simplexml
+      - automysqlbackup
