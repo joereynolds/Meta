@@ -6,15 +6,34 @@
     append: yes
   become: true
 
+- name: Create /var/www directory
+  file:
+    path: /var/www
+    state: directory
+    mode: 0755
+  become: true
+
 - name: Install apt repositories
   apt:
     update_cache: yes
     name: "{{ item }}"
   become: true
   with_items:
+      - automysqlbackup
       - fail2ban
       - git
       - php7.0
       - php7.0-curl
       - php7.0-mbstring
       - php7.0-simplexml
+
+- name: Clone git repos
+  git:
+      repo: "https://github.com/joereynolds/{{ item }}"
+      dest: "/var/www/{{ item }}"
+  with_items:
+      - boganspunkrock
+      - util.joereynoldsaudio
+      - joereynoldsaudio
+  become: true
+
