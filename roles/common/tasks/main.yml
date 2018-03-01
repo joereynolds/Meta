@@ -35,5 +35,6 @@
       - boganspunkrock
       - util.joereynoldsaudio
       - joereynoldsaudio
+      - metronome
   become: true
 
