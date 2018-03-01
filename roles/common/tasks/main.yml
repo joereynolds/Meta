@@ -1,5 +1,10 @@
-# - name: Add ppa:ondrej/php
-  # raw: "sudo add-apt-repository ppa:ondrej/php"
+- name: Add joe user
+  user:
+    name: joe
+    shell: /bin/bash
+    groups: sudo
+    append: yes
+  become: true
 
 - name: Install apt repositories
   apt:
@@ -9,7 +14,7 @@
   with_items:
       - fail2ban
       - git
-      - php7.1
-      - php7.1-curl
-      - php7.1-mbstring
-      - php7.1-simplexml
+      - php7.0
+      - php7.0-curl
+      - php7.0-mbstring
+      - php7.0-simplexml
