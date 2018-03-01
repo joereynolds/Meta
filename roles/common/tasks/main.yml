@@ -6,11 +6,14 @@
     append: yes
   become: true
 
-- name: Create /var/www directory
+- name: Create required /var/www directories
   file:
-    path: /var/www
+    path: "{{ item }}"
     state: directory
     mode: 0755
+  with_items:
+      - /var/www
+      - /etc/apache2/sites-enabled
   become: true
 
 - name: Install apt repositories
@@ -37,4 +40,16 @@
       - joereynoldsaudio
       - metronome
   become: true
+
+- name: Copy Apache configurations
+  copy:
+    src: ./roles/common/files/{{ item }}
+    dest: /etc/apache2/sites-enabled/{{ item }}
+  with_items:
+      - boganspunkrock.conf
+      - staging.boganspunkrock.conf
+      - metronome.joereynoldsaudio.conf
+      - util.joereynoldsaudio.conf
+  become: true
+
 
