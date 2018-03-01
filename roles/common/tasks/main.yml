@@ -22,6 +22,7 @@
     name: "{{ item }}"
   become: true
   with_items:
+      - apache2
       - automysqlbackup
       - fail2ban
       - git
@@ -39,6 +40,12 @@
       - util.joereynoldsaudio
       - joereynoldsaudio
       - metronome
+  become: true
+
+- name: Enable Apache rewrite module
+  apache2_module:
+    state: present
+    name: rewrite
   become: true
 
 - name: Copy Apache configurations
