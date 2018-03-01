@@ -6,7 +6,7 @@
     append: yes
   become: true
 
-- name: Create required /var/www directories
+- name: Create required directories
   file:
     path: "{{ item }}"
     state: directory
@@ -51,5 +51,3 @@
       - metronome.joereynoldsaudio.conf
       - util.joereynoldsaudio.conf
   become: true
-
-
