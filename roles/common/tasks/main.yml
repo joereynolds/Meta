@@ -53,7 +53,7 @@
   become: true
 
 - name: Set Postfix option hostname
-  debconf: name=postifx question="postfix/mailname" value="{{ansible_fqdn}}" vtype="string"
+  debconf: name=postfix question="postfix/mailname" value="{{ansible_fqdn}}" vtype="string"
   become: true
 
 - name: Set Postfix option type as internet site
