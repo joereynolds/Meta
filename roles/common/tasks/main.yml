@@ -28,13 +28,14 @@
 
 - name: Clone git repos
   git:
-      repo: "https://github.com/joereynolds/{{ item }}"
-      dest: "/var/www/{{ item }}"
+      repo: "https://github.com/{{ item.user }}/{{ item.repository }}"
+      dest: "/var/www/{{ item.repository }}"
   with_items:
-      - boganspunkrock
-      - util.joereynoldsaudio
-      - joereynoldsaudio
-      - metronome
+      - { user: 'joereynolds', repository: 'boganspunkrock' }
+      - { user: 'joereynolds', repository: 'util.joereynoldsaudio' }
+      - { user: 'joereynolds', repository: 'joereynoldsaudio' }
+      - { user: 'joereynolds', repository: 'metronome' }
+      - { user: 'CISOfy', repository: 'lynis' }
   become: true
 
 - name: Enable Apache rewrite module
