@@ -22,14 +22,9 @@
     name: "{{ item }}"
   become: true
   with_items:
-      - apache2
       - automysqlbackup
       - fail2ban
-      - git
-      - php7.0
-      - php7.0-curl
-      - php7.0-mbstring
-      - php7.0-simplexml
+      - pwgen
 
 - name: Clone git repos
   git:
@@ -53,8 +48,6 @@
     src: ./roles/common/files/{{ item }}
     dest: /etc/apache2/sites-enabled/{{ item }}
   with_items:
-      - boganspunkrock.conf
-      - staging.boganspunkrock.conf
       - metronome.joereynoldsaudio.conf
       - util.joereynoldsaudio.conf
   become: true
