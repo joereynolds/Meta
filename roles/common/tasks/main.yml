@@ -13,7 +13,6 @@
     mode: 0755
   with_items:
       - /var/www
-      - /etc/apache2/sites-enabled
   become: true
 
 - name: Install apt repositories
@@ -23,6 +22,7 @@
   become: true
   with_items:
       - automysqlbackup
+      - docker-compose
       - fail2ban
       - pwgen
 
@@ -36,21 +36,6 @@
       - { user: 'joereynolds', repository: 'joereynoldsaudio' }
       - { user: 'joereynolds', repository: 'metronome' }
       - { user: 'CISOfy', repository: 'lynis' }
-  become: true
-
-- name: Enable Apache rewrite module
-  apache2_module:
-    state: present
-    name: rewrite
-  become: true
-
-- name: Copy Apache configurations
-  copy:
-    src: ./roles/common/files/{{ item }}
-    dest: /etc/apache2/sites-enabled/{{ item }}
-  with_items:
-      - metronome.joereynoldsaudio.conf
-      - util.joereynoldsaudio.conf
   become: true
 
 - name: Set Postfix option hostname
