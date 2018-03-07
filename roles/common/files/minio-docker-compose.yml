@@ -11,3 +11,6 @@ services:
    MINIO_ACCESS_KEY: minio
    MINIO_SECRET_KEY: minio123
   command: server http://minio1/data
+
+volumes:
+  data1:
