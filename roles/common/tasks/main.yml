@@ -2,7 +2,7 @@
   user:
     name: joe
     shell: /bin/bash
-    groups: sudo
+    groups: sudo, www-data
     append: yes
   become: true
 
@@ -39,7 +39,7 @@
       - { user: 'CISOfy', repository: 'lynis' }
   become: true
 
-- name: Copy minio docker-compose file  
+- name: Copy minio docker-compose file
   copy:
     src: ./roles/common/files/minio-docker-compose.yml
     dest: /var/www/minio/docker-compose.yml
