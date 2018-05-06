@@ -1,0 +1,35 @@
+# This is a reverse proxy for all of my sites
+version: '2'
+
+services:
+    nginx-proxy:
+        ports:
+            - 80:80
+        container_name: nginx-proxy
+        image: jwilder/nginx-proxy
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+    jra:
+        volumes:
+            - /var/www/joereynoldsaudio:/var/www/html
+        restart: always
+        build: "/var/www/joereynoldsaudio"
+        environment:
+            VIRTUAL_HOST: joereynoldsaudio.com
+        expose:
+            - 80
+
+    metronome:
+        volumes:
+            - /var/www/metronome:/var/www/html
+        restart: always
+        build: "/var/www/metronome"
+        environment:
+            VIRTUAL_HOST: metronome.joereynoldsaudio.com
+        expose:
+            - 80
+
+networks:
+    default:
+        external:
+            name: nginx-proxy
