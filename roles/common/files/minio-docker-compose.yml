@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+ minio1:
+  image: minio/minio
+  volumes:
+   - data1:/data
+  ports:
+   - "9001:9000"
+  environment:
+   MINIO_ACCESS_KEY: minio
+   MINIO_SECRET_KEY: minio123
+  command: server http://minio1/data
+
+volumes:
+  data1:
